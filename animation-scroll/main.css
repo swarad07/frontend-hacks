@@ -1,0 +1,145 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
+
+html {
+  font-family:'Open Sans', sans-serif; background-color: black;
+  color: #fff;
+}
+
+body {
+  margin: 0;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  padding: 0 1rem;
+}
+
+p {
+  line-height: 1.5;
+}
+
+h1 {
+  font-size: 4rem;
+}
+
+h2 {
+  font-size: 3rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.header {
+  position: relative;
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.header img {
+  position: absolute;
+  top: 0;
+  z-index: -1;
+  max-height: 600px;
+  filter: blur(6px);
+  width: 100%;
+}
+
+.header :has(div, p) {
+  font-size: 1.25rem;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* CSS only text reveal on headings */
+.header span {
+  color: hsl(0 0% 100% / 0.25);
+  background-clip: text;
+  background-repeat: no-repeat;
+  background-image: linear-gradient(90deg, lime, blue);
+  background-size: 0% 100%;
+  animation: h1-scroll-reveal linear forwards;
+  animation-timeline: view();
+  animation-range-start:0vh;
+  animation-range-end: 100vh;
+}
+
+.header h1 span {
+  color: hsla(0, 64%, 4%, 0.25);
+}
+
+h2 > * {
+  color: hsl(0 0% 100% / 0.25);
+  background-clip: text;
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  background-image: linear-gradient(90deg, blue, red);
+  animation: h2-scroll-reveal linear forwards;
+  animation-timeline: view();
+  animation-range-start: 1vh;
+  animation-range-end: 65vh;
+}
+
+@keyframes h2-scroll-reveal {
+  to {
+    background-size: 100% 100%;
+  }
+}
+
+@keyframes h1-scroll-reveal {
+  to {
+    background-size: 100% 100%;
+  }
+}
+
+/* Scroll Progress */
+.scroll-progress {
+  background-image: linear-gradient(90deg, lime, magenta);
+  /* background: blueviolet; */
+  height: 10px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  scale: 0 1;
+  animation: scroll-progress linear;
+  animation-timeline: scroll(y);
+  transform-origin: left;
+}
+
+@keyframes scroll-progress {
+  to {
+    scale: 1 1;
+  }
+}
+
+/* Image scroll */
+
+.content img { 
+  object-fit: cover;
+  width: 100%;
+  height: auto;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .content img {
+    scale: 0.5;
+    
+    animation: image-fade-in linear forwards;
+    animation-timeline: view();
+    animation-range: 250px 60vh;
+  }
+
+  @keyframes image-fade-in {
+    to {
+      scale: 1;
+      opacity: 1;
+    }
+  }
+}
